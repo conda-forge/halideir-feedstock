@@ -10,7 +10,7 @@ source:
   git_url: https://github.com/dmlc/HalideIR.git
 
 build:
-  number: 0
+  number: 1
   skip: true  # [not linux]
 
 requirements:
@@ -19,11 +19,20 @@ requirements:
     - {{ compiler('cxx') }}
   host:
     - dmlc
+    - dlpack
 
 test:
   commands:
     - test -f $PREFIX/lib/libHalideIR.a  # [unix]
     - test -f $PREFIX/lib/libHalideIR${SHLIB_EXT}  # [unix]
+    - test -d $PREFIX/lib/arithmetic  # [unix]
+    - test -d $PREFIX/lib/ir  # [unix]
+    - test -d $PREFIX/lib/base  # [unix]
+    - test -d $PREFIX/lib/tvm  # [unix]
+    - test -d $PREFIX/include/arithmetic  # [unix]
+    - test -d $PREFIX/include/ir  # [unix]
+    - test -d $PREFIX/include/base  # [unix]
+    - test -d $PREFIX/include/tvm/node  # [unix]
 
 about:
   home: https://github.com/dmlc/HalideIR
